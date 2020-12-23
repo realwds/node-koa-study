@@ -1,6 +1,5 @@
 const router = require('koa-router')()
 const axios = require('axios')
-const { copyFile } = require('fs/promises')
 
 const clientID = '9801841099bc8a201d2f'
 const clientSecret = '36580299c33ae6c26cbccdf90614adf0eaa7d3ec'

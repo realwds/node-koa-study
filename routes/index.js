@@ -1,10 +1,10 @@
 const router = require('koa-router')()
 
-router.get('/', async (ctx, next) => {
-  ctx.body = '<h3>index</h3>'
+router.get('/', async(ctx, next) => {
+  ctx.body = '<h3>index api</h3>'
 })
 
-router.get('/get', async (ctx, next) => {
+router.get('/get', async(ctx, next) => {
   let id = ctx.request.query.id
   ctx.body = {
     id,
@@ -12,7 +12,7 @@ router.get('/get', async (ctx, next) => {
   }
 })
 
-router.get('/get/:id', async (ctx, next) => {
+router.get('/get/:id', async(ctx, next) => {
   let id = ctx.request.params.id
   ctx.body = {
     id,
@@ -20,8 +20,7 @@ router.get('/get/:id', async (ctx, next) => {
   }
 })
 
-router.post('/post', async (ctx, next) => {
-  console.log(ctx.request)
+router.post('/post', async(ctx, next) => {
   ctx.body = {
     code: 1,
     postParams: ctx.request.body

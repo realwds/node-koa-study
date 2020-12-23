@@ -28,7 +28,7 @@ npm i nodemon -g
 cd node-koa-study
 
 # install dependency
-npm i nodemon --save
+npm i nodemon --save-dev
 ```
 
 ### 基础架构

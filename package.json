@@ -9,7 +9,12 @@
     "koa-router": "^10.0.0",
     "nodemon": "^2.0.6"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/register": "^7.12.10",
+    "fs": "0.0.1-security"
+  },
   "scripts": {
     "dev": "nodemon app.js"
   },

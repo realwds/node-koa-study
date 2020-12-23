@@ -1,11 +1,18 @@
 # node-koa-study
 
-## 项目运行
+## 快速上手
 
 ```bash
+# clone the project
 git clone https://github.com/realwds/node-koa-study.git
+
+# enter the project directory
 cd node-koa-study
+
+# install dependency
 npm i
+
+# develop
 npm run dev
 ```
 
@@ -14,8 +21,13 @@ npm run dev
 ### nodemon 实时监听项目
 
 ```bash
+# install dependency gobal
 npm i nodemon -g
+
+# enter the project directory
 cd node-koa-study
+
+# install dependency
 npm i nodemon --save
 ```
 
@@ -28,38 +40,34 @@ const Router = require('koa-router')
 const app = new Koa()
 const router = new Router()
 
-
 //使用中间件
-app
-  .use(router.routes())
-  .use(router.allowedMethods())
+app.use(router.routes()).use(router.allowedMethods())
 
 app.listen(3000)
 console.log('app started at port 3000...')
 ```
 
-
 ### GET 方法
 
 ```js
 router.get('/', (ctx, next) => {
-	ctx.body = '<h3>别看了，这是我的接口地址首页</h3>'
+  ctx.body = '<h3>home page</h3>'
 })
 
 router.get('/get', (ctx, next) => {
-	let id = ctx.request.query.id
-	ctx.body = {
-		id,
-		code: 1
-	}
+  let id = ctx.request.query.id
+  ctx.body = {
+    id,
+    code: 1,
+  }
 })
 
 router.get('/get/:id', (ctx, next) => {
-	let id = ctx.request.params.id
-	ctx.body = {
-		id,
-		code: 1
-	}
+  let id = ctx.request.params.id
+  ctx.body = {
+    id,
+    code: 1,
+  }
 })
 ```
 
@@ -67,6 +75,7 @@ router.get('/get/:id', (ctx, next) => {
 
 ```js
 const bodyParser = require('koa-bodyparser')
+
 app.use(bodyParser())
 ```
 
@@ -74,12 +83,12 @@ app.use(bodyParser())
 
 ```js
 router.post('/post', (ctx, next) => {
-	//设置允许跨域
-	ctx.set('Access-Control-Allow-Origin','*')
-	ctx.body = {
-		code: 1,
-		postParams: ctx.request.body
-	}
+  //设置允许跨域
+  ctx.set('Access-Control-Allow-Origin', '*')
+  ctx.body = {
+    code: 1,
+    postParams: ctx.request.body,
+  }
 })
 ```
 

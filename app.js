@@ -6,6 +6,10 @@ const cors = require('koa2-cors')
 
 const app = new Koa()
 
+router.get('/', async (ctx, next) => {
+  ctx.body = '<h3>home</h3>'
+})
+
 let urls = fs.readdirSync(__dirname + '/routes')
 
 urls.forEach((element) => {

@@ -41,4 +41,38 @@ router.get('/user', async(ctx, next) => {
   }
 })
 
+router.get('/cdnContent', async(ctx, next) => {
+  const accessToken = ctx.request.query.access_token
+  const loginAddress = ctx.request.query.login_address
+  const result = await axios({
+    method: 'get',
+    url: `https://api.github.com/repos/${loginAddress}/cdn/contents`,
+    headers: {
+      accept: 'application/json',
+      Authorization: `token ${accessToken}`
+    }
+  })
+  ctx.body = {
+    data: result.data,
+    copyright: 'https://github.com/realwds'
+  }
+})
+
+router.get('/cdnFile', async(ctx, next) => {
+  const accessToken = ctx.request.query.access_token
+  const contenURL = ctx.request.query.content_url
+  const result = await axios({
+    method: 'get',
+    url: contenURL,
+    headers: {
+      accept: 'application/json',
+      Authorization: `token ${accessToken}`
+    }
+  })
+  ctx.body = {
+    data: result.data,
+    copyright: 'https://github.com/realwds'
+  }
+})
+
 module.exports = router

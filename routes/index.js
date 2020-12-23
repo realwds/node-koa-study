@@ -1,11 +1,4 @@
-const Koa = require('koa')
-const bodyParser = require('koa-bodyparser')
-const Router = require('koa-router')
-
-const app = new Koa()
-const router = new Router()
-
-app.use(bodyParser())
+const router = require('koa-router')()
 
 router.get('/', async (ctx, next) => {
   ctx.body = '<h3>home page</h3>'
@@ -28,14 +21,11 @@ router.get('/get/:id', async (ctx, next) => {
 })
 
 router.post('/post', async (ctx, next) => {
-  //设置允许跨域
-  ctx.set('Access-Control-Allow-Origin', '*')
-  console.log(ctx.request.body)
+  console.log(ctx.request)
   ctx.body = {
     code: 1,
     postParams: ctx.request.body
   }
 })
-
 
 module.exports = router

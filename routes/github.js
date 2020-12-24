@@ -12,8 +12,8 @@ router.get('/redirect', async(ctx, next) => {
   const tokenResponse = await axios({
     method: 'post',
     url: 'https://github.com/login/oauth/access_token?' +
-      `client_id=${baseConfig.clientID}&` +
-      `client_secret=${baseConfig.clientSecret}&` +
+      `client_id=${baseConfig[baseConfig.mode].clientID}&` +
+      `client_secret=${baseConfig[baseConfig.mode].clientSecret}&` +
       `code=${requestToken}`,
     headers: {
       accept: 'application/json'
@@ -21,7 +21,7 @@ router.get('/redirect', async(ctx, next) => {
   })
   const accessToken = tokenResponse.data.access_token
   ctx.body = `redirect`
-  ctx.response.redirect(`${baseConfig.redirectUri}?access_token=${accessToken}`)
+  ctx.response.redirect(`${baseConfig[baseConfig.mode].redirectUri}?access_token=${accessToken}`)
 })
 
 //获取用户信息
@@ -37,7 +37,7 @@ router.get('/user', async(ctx, next) => {
   })
   ctx.body = {
     data: result.data,
-    copyright: `${baseConfig.copyright}`
+    copyright: `${baseConfig[baseConfig.mode].copyright}`
   }
 })
 
@@ -55,7 +55,7 @@ router.get('/cdnContent', async(ctx, next) => {
   })
   ctx.body = {
     data: result.data,
-    copyright: `${baseConfig.copyright}`
+    copyright: `${baseConfig[baseConfig.mode].copyright}`
   }
 })
 
@@ -73,7 +73,7 @@ router.get('/cdnFile', async(ctx, next) => {
   })
   ctx.body = {
     data: result.data,
-    copyright: `${baseConfig.copyright}`
+    copyright: `${baseConfig[baseConfig.mode].copyright}`
   }
 })
 

@@ -11,6 +11,9 @@ git clone https://github.com/realwds/node-koa-study.git
 # enter the project directory
 cd node-koa-study
 
+# Set production environment
+cp config/base.local.js config/base.js
+
 # install dependency
 npm i
 

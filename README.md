@@ -1,5 +1,7 @@
 # node-koa-study
 
+> A Koa.js project
+
 ## 快速上手
 
 ```bash

@@ -1,6 +1,7 @@
 const router = require('koa-router')()
 const axios = require('axios')
 const baseConfig = require("../config/base")
+const commonBaseConfig = baseConfig[baseConfig.mode].github
 
 router.get('/', async(ctx, next) => {
   ctx.body = '<h3>github api</h3>'
@@ -12,8 +13,8 @@ router.get('/redirect', async(ctx, next) => {
   const tokenResponse = await axios({
     method: 'post',
     url: 'https://github.com/login/oauth/access_token?' +
-      `client_id=${baseConfig[baseConfig.mode].clientID}&` +
-      `client_secret=${baseConfig[baseConfig.mode].clientSecret}&` +
+      `client_id=${commonBaseConfig.clientID}&` +
+      `client_secret=${commonBaseConfig.clientSecret}&` +
       `code=${requestToken}`,
     headers: {
       accept: 'application/json'
@@ -21,7 +22,7 @@ router.get('/redirect', async(ctx, next) => {
   })
   const accessToken = tokenResponse.data.access_token
   ctx.body = `redirect`
-  ctx.response.redirect(`${baseConfig[baseConfig.mode].redirectUri}?access_token=${accessToken}`)
+  ctx.response.redirect(`${commonBaseConfig.redirectUri}?access_token=${accessToken}`)
 })
 
 //获取用户信息
@@ -37,7 +38,7 @@ router.get('/user', async(ctx, next) => {
   })
   ctx.body = {
     data: result.data,
-    copyright: `${baseConfig[baseConfig.mode].copyright}`
+    copyright: `${commonBaseConfig.copyright}`
   }
 })
 
@@ -55,7 +56,7 @@ router.get('/cdnContent', async(ctx, next) => {
   })
   ctx.body = {
     data: result.data,
-    copyright: `${baseConfig[baseConfig.mode].copyright}`
+    copyright: `${commonBaseConfig.copyright}`
   }
 })
 
@@ -73,7 +74,7 @@ router.get('/cdnFile', async(ctx, next) => {
   })
   ctx.body = {
     data: result.data,
-    copyright: `${baseConfig[baseConfig.mode].copyright}`
+    copyright: `${commonBaseConfig.copyright}`
   }
 })
 

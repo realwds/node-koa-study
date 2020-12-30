@@ -1,3 +1,10 @@
+/*
+ * @Description: 
+ * @version: V1.0.0
+ * @Author: realwds
+ * @Date: 2020-12-23 10:05:17
+ * @LastEditTime: 2020-12-30 16:28:30
+ */
 const fs = require('fs')
 const Koa = require('koa')
 const router = require('koa-router')()
@@ -7,7 +14,35 @@ const cors = require('koa2-cors')
 const app = new Koa()
 
 router.get('/', async (ctx, next) => {
-  ctx.body = '<h3>home</h3>'
+	ctx.body = `
+	<div style="height:88vh;display:flex;align-items:center;justify-content:center;">
+		<p style="color:#636b6f;font-family:'Raleway',sans-serif;font-size:30px;font-weight:100;">
+			https://api.disnot.com
+		</p>
+	</div>
+	`
+})
+
+// 404页面统一处理
+app.use(async (ctx, next) => {
+  await next()
+  if(parseInt(ctx.status) === 404 ){
+		ctx.body = `
+		<div style="height:88vh;display:flex;align-items:center;justify-content:center;">
+			<p style="color:#636b6f;font-family:'Raleway',sans-serif;font-size:30px;font-weight:100;">
+				404，页面不见了
+			</p>
+		</div>
+		`
+  } else if(parseInt(ctx.status) === 500 ){
+		ctx.body = `
+		<div style="height:88vh;display:flex;align-items:center;justify-content:center;">
+			<p style="color:#636b6f;font-family:'Raleway',sans-serif;font-size:30px;font-weight:100;">
+				500，服务器崩了
+			</p>
+		</div>
+		`
+  }
 })
 
 let urls = fs.readdirSync(__dirname + '/routes')

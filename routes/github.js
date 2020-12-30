@@ -1,3 +1,10 @@
+/*
+ * @Description: github接口
+ * @version: V1.0.0
+ * @Author: realwds
+ * @Date: 2020-12-23 16:14:41
+ * @LastEditTime: 2020-12-30 14:44:44
+ */
 const router = require('koa-router')()
 const axios = require('axios')
 const baseConfig = require("../config/base")

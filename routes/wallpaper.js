@@ -3,7 +3,7 @@
  * @version: V1.0.0
  * @Author: realwds
  * @Date: 2020-12-30 14:31:21
- * @LastEditTime: 2020-12-30 17:02:52
+ * @LastEditTime: 2020-12-30 17:13:20
  */
 const router = require('koa-router')()
 const axios = require('axios')
@@ -26,6 +26,9 @@ router.get('/getAllCategories', async(ctx, next) => {
   }
 })
 
+//
+
+
 // 获取某类别下的壁纸
 router.get('/getAppsByCategory', async(ctx, next) => {
   const cid = ctx.request.query.cid
@@ -33,7 +36,9 @@ router.get('/getAppsByCategory', async(ctx, next) => {
   const count = ctx.request.query.count ? ctx.request.query.count : 10
   const result = await axios({
     method: 'get',
-    url: `http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid=${cid}&start=${start}&count=${count}`
+    url: cid == 'new' ? 
+    `http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByOrder&order=create_time&start=${start}&count=${count}`:
+    `http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid=${cid}&start=${start}&count=${count}`
   })
   ctx.body = {
     data: result.data,

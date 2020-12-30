@@ -3,7 +3,7 @@
  * @version: V1.0.0
  * @Author: realwds
  * @Date: 2020-12-30 14:31:21
- * @LastEditTime: 2020-12-30 16:07:25
+ * @LastEditTime: 2020-12-30 17:02:52
  */
 const router = require('koa-router')()
 const axios = require('axios')
@@ -33,7 +33,7 @@ router.get('/getAppsByCategory', async(ctx, next) => {
   const count = ctx.request.query.count ? ctx.request.query.count : 10
   const result = await axios({
     method: 'get',
-    url: `http://wallpaper.apc.360.cn/index.php?c=WallPaperAndroid&a=getAppsByCategory&cid=${cid}&start=${start}&count=${count}`
+    url: `http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid=${cid}&start=${start}&count=${count}`
   })
   ctx.body = {
     data: result.data,

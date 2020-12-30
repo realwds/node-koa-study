@@ -3,7 +3,7 @@
  * @version: V1.0.0
  * @Author: realwds
  * @Date: 2020-12-30 14:31:21
- * @LastEditTime: 2020-12-30 16:04:50
+ * @LastEditTime: 2020-12-30 16:07:25
  */
 const router = require('koa-router')()
 const axios = require('axios')
@@ -69,7 +69,7 @@ router.get('/hotSearch', async(ctx, next) => {
 })
 
 // 获取必应壁纸
-router.get('/bingy', async(ctx, next) => {
+router.get('/biying', async(ctx, next) => {
   const start = ctx.request.query.start ? ctx.request.query.start : 0
   const count = ctx.request.query.count ? ctx.request.query.count : 8
   const result = await axios({
